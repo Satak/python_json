@@ -1,1 +1,1 @@
-{"users": [{"password": "password123!", "username": "jaasimo", "lastname": "Simonen", "name": "Jaakko", "balance": 10.0}, {"name": "Erkki", "username": "erkmati", "lastname": "Matilainen", "password": "myBank!2016", "balance": 30.4}]}
+{"users": [{"lastname": "Simonen", "password": "password123!", "username": "jaasimo", "balance": 10.0, "name": "Jaakko"}, {"lastname": "Matilainen", "password": "myBank!2016", "username": "erkmati", "balance": 30.4, "name": "Erkki"}, {"lastname": "Koskinen", "password": "asdqwe", "username": "samkosk", "name": "Sami", "balance": 0.0}]}

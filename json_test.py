@@ -1,9 +1,11 @@
 import json
 
-def save_data(user, data, file_name):
+def save_data(user, file_name):
     """Add user to users list and save to json file"""
 
-    if user not in data["users"]:
+    data = get_data(file_name)
+    find = any(item['username'] == user["username"] for item in data["users"])
+    if not find:
         data["users"].append(user)
         with open(file_name, 'w') as data_file:
             json.dump(data, data_file)
@@ -34,22 +36,26 @@ def get_balance(user):
     else:
         print("You are not logged in!")
 
+def new_user(file_name):
+
+    name = input("Give name: ")
+    lastname = input("Give lastname: ")
+    password = input("Give password: ")
+    username = name[:3] + lastname[:4]
+    username = username.lower()
+    user = {
+        "name"     : name,
+        "lastname" : lastname,
+        "username" : username,
+        "password" : password,
+        "balance"  : 0.0
+    }
+    save_data(user,file_name)
+
 # json data file constant
 FILE_NAME = "data.json"
 
-# create new user
-user = {
-    "name"     : "Erkki",
-    "lastname" : "Matilainen",
-    "username" : "erkmati",
-    "password" : "myBank!2016",
-    "balance"  : 30.40
-}
-
-# get data from json file
-#data = get_data(FILE_NAME)
+new_user(FILE_NAME)
 user = login(FILE_NAME)
 get_balance(user)
-# save created user to json file
-#save_data(user,data,FILE_NAME)
 
