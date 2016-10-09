@@ -18,18 +18,38 @@ def get_data(file_name):
         data = json.load(data_file)
     return data
 
+def login(file_name):
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    data = get_data(file_name)
+    find = any(user['username'] == username and user['password'] == password for user in data["users"])
+    if find:
+        userFound = next((user for user in data["users"] if user["username"] == username and user['password'] == password))
+        return {"logged": True, "user": userFound}
+    return {"logged": False, "user": None}
+
+def get_balance(user):
+    if user["logged"]:
+        print("Your balance is {} EUR".format(user["user"]["balance"]))
+    else:
+        print("You are not logged in!")
+
 # json data file constant
 FILE_NAME = "data.json"
 
 # create new user
 user = {
-    "name"     : "Jaakko",
-    "lastname" : "Simonen"
+    "name"     : "Erkki",
+    "lastname" : "Matilainen",
+    "username" : "erkmati",
+    "password" : "myBank!2016",
+    "balance"  : 30.40
 }
 
 # get data from json file
-data = get_data(FILE_NAME)
-
+#data = get_data(FILE_NAME)
+user = login(FILE_NAME)
+get_balance(user)
 # save created user to json file
-save_data(user,data,FILE_NAME)
+#save_data(user,data,FILE_NAME)
 
