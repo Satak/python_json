@@ -22,6 +22,8 @@ def get_data(file_name):
     return data
 
 def login(file_name):
+    """Asks username and password and try to find the user from the json file"""
+    
     username = input("Enter username: ")
     password = input("Enter password: ")
     data = get_data(file_name)
@@ -32,12 +34,15 @@ def login(file_name):
     return {"logged": False, "user": None}
 
 def get_balance(user):
+    """If user is logged in then show the balance"""
+
     if user["logged"]:
         print("Your balance is {} EUR".format(user["user"]["balance"]))
     else:
         print("You are not logged in!")
 
 def new_user(file_name):
+    """Create new user based on the user input"""
 
     name = input("Give name: ")
     lastname = input("Give lastname: ")
